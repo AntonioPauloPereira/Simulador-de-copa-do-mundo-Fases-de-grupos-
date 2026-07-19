@@ -16,6 +16,7 @@ public class INConfronto extends javax.swing.JFrame {
      */
     public INConfronto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -518,6 +519,11 @@ public class INConfronto extends javax.swing.JFrame {
         jLabel23.setText("Data:");
 
         jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -714,6 +720,10 @@ public class INConfronto extends javax.swing.JFrame {
     private void jtfGol11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfGol11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfGol11ActionPerformed
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSalvarActionPerformed
 
     /**
      * @param args the command line arguments
