@@ -112,6 +112,11 @@ public class INSelecoes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jListJogadores);
 
         jBtnAdd.setText("+");
+        jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAddActionPerformed(evt);
+            }
+        });
 
         jBtnRmv.setText("-");
 
@@ -260,6 +265,14 @@ public class INSelecoes extends javax.swing.JFrame {
         int participacoes = Integer.parseInt(jtfParticipacoes.getText());
         boolean estreante = JcheckEstreante.isSelected(); 
     }//GEN-LAST:event_jBtnSalvarMouseClicked
+
+    private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
+        // TODO add your handling code here:
+        
+        INJogador iNJogador = new INJogador(this);
+        iNJogador.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBtnAddActionPerformed
 
     /**
      * @param args the command line arguments

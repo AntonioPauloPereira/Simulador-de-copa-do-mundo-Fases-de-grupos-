@@ -16,7 +16,7 @@ public class INJogador extends javax.swing.JFrame {
      */
     public INJogador(JFrame telaAnterior) {
         initComponents();
-    
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -89,6 +89,11 @@ public class INJogador extends javax.swing.JFrame {
                 jBtnSalvarMouseClicked(evt);
             }
         });
+        jBtnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,10 +120,8 @@ public class INJogador extends javax.swing.JFrame {
                     .addComponent(jtfPosicaoJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jtfAlturaJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(92, 92, 92)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jtfClubeAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,6 +215,14 @@ public class INJogador extends javax.swing.JFrame {
    
         
     }//GEN-LAST:event_jBtnSalvarMouseClicked
+
+    private void jBtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarActionPerformed
+        // TODO add your handling code here:
+               
+        INSelecoes iNSelecoes = new INSelecoes();
+        iNSelecoes.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jBtnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

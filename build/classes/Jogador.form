@@ -44,37 +44,45 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jtfDataNascimentoJogador" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jTextField4" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jtfPesoJogador" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="jTextField6" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jtfNumeroJogador" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="jTextField2" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jtfNomeJogador" min="-2" pref="269" max="-2" attributes="0"/>
+                          <Component id="jTextField1" min="-2" pref="269" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jtfPosicaoJogador" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfAlturaJogador" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextField3" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField5" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="23" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="92" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfClubeAtual" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jTextField8" min="-2" pref="100" max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfPaisJogador" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jTextField7" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
               </Group>
@@ -106,16 +114,16 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtfNomeJogador" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfPosicaoJogador" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfPaisJogador" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jtfPesoJogador" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField6" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -125,10 +133,10 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtfNumeroJogador" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jtfAlturaJogador" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jtfClubeAtual" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -136,7 +144,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jtfDataNascimentoJogador" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="35" max="32767" attributes="0"/>
                   <Component id="jBtnSalvar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
@@ -153,7 +161,7 @@
             <Property name="text" type="java.lang.String" value="Jogador"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfNomeJogador">
+        <Component class="javax.swing.JTextField" name="jTextField1">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -171,7 +179,7 @@
             <Property name="text" type="java.lang.String" value="Numero:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfNumeroJogador">
+        <Component class="javax.swing.JTextField" name="jTextField2">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -181,9 +189,9 @@
             <Property name="text" type="java.lang.String" value="Posi&#xe7;&#xe3;o:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfPosicaoJogador">
+        <Component class="javax.swing.JTextField" name="jTextField3">
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfDataNascimentoJogador">
+        <Component class="javax.swing.JTextField" name="jTextField4">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -201,7 +209,7 @@
             <Property name="text" type="java.lang.String" value="Altura:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfAlturaJogador">
+        <Component class="javax.swing.JTextField" name="jTextField5">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -211,7 +219,7 @@
             <Property name="text" type="java.lang.String" value="Peso:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfPesoJogador">
+        <Component class="javax.swing.JTextField" name="jTextField6">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -221,7 +229,7 @@
             <Property name="text" type="java.lang.String" value="Pa&#xed;s:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfPaisJogador">
+        <Component class="javax.swing.JTextField" name="jTextField7">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -231,19 +239,15 @@
             <Property name="text" type="java.lang.String" value="Clube Atual:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfClubeAtual">
+        <Component class="javax.swing.JTextField" name="jTextField8">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfClubeAtualActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField8ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBtnSalvar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBtnSalvarMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnSalvarActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
