@@ -4,8 +4,8 @@ public class Confronto {
     
     private String selecaoA;
     private String selecaoB;
-    private String goalsA;
-    private String goalsB;
+    private int goalsA;
+    private int goalsB;
     private String local;
     private LocalDateTime dataHoraConfronto;
    
@@ -15,15 +15,15 @@ public class Confronto {
         return selecaoA;
     }
 
-    public String getSelecaB() {
+    public String getSelecaoB() {
         return selecaoB;
     }
 
-    public String getGoalsA() {
+    public int getGoalsA() {
         return goalsA;
     }
 
-    public String getGoalsB() {
+    public int getGoalsB() {
         return goalsB;
     }
 
@@ -41,15 +41,15 @@ public class Confronto {
         this.selecaoA = selecaoA;
     }
 
-    public void setSelecaB(String selecaoB) {
+    public void setSelecaoB(String selecaoB) {
         this.selecaoB = selecaoB;
     }
 
-    public void setGoalsA(String goalsA) {
+    public void setGoalsA(int goalsA) {
         this.goalsA = goalsA;
     }
 
-    public void setGoalsB(String goalsB) {
+    public void setGoalsB(int goalsB) {
         this.goalsB = goalsB;
     }
 
@@ -63,7 +63,7 @@ public class Confronto {
 
     //Construtores
 
-    public Confronto(String selecaoA, String selecaoB, String goalsA, String goalsB, String local, LocalDateTime dataHoraConfronto) {
+    public Confronto(String selecaoA, String selecaoB, int goalsA, int goalsB, String local, LocalDateTime dataHoraConfronto) {
         this.selecaoA = selecaoA;
         this.selecaoB = selecaoB;
         this.goalsA = goalsA;

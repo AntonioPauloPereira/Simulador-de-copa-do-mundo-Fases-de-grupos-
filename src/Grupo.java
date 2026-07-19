@@ -1,7 +1,9 @@
+import java.util.List;
 
 public class Grupo {
+    
     private String nome;
-    private String selecoes;
+    private List<String> selecoes;
 
     //Getters
     
@@ -9,7 +11,7 @@ public class Grupo {
         return nome;
     }
 
-    public String getSelecoes() {
+    public List<String> getSelecoes() {
         return selecoes;
     }
     
@@ -19,13 +21,13 @@ public class Grupo {
         this.nome = nome;
     }
 
-    public void setSelecoes(String selecoes) {
+    public void setSelecoes(List<String> selecoes) {
         this.selecoes = selecoes;
     }
     
     //Construtores
 
-    public Grupo(String nome, String selecoes) {
+    public Grupo(String nome, List<String> selecoes) {
         this.nome = nome;
         this.selecoes = selecoes;
     }

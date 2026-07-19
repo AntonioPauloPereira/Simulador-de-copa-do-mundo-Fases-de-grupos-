@@ -2,22 +2,22 @@ public class Selecoes {
     private int id;
     private String nome;
     private int titulos;
-    private boolean est;
-    private int npart;
-    private String mposi;
-    private String fatoin;
+    private boolean estreante;
+    private int participacoes;
+    private String MelhorColoc;
+    private String curiosidade;
    
     public Selecoes() {
 
     }
      
-    public Selecoes(String nome, int titulos, boolean est, int npart, String mposi, String fatoin) {
+    public Selecoes(String nome, int titulos, boolean estreante, int participacoes, String MelhorColoc, String curiosidade) {
         this.nome = nome;
         this.titulos = titulos;
-        this.est = est;
-        this.npart = npart;
-        this.mposi = mposi;
-        this.fatoin = fatoin;
+        this.estreante = estreante;
+        this.participacoes = participacoes;
+        this.MelhorColoc = MelhorColoc;
+        this.curiosidade = curiosidade;
     }
 
     public int getId() {
@@ -41,35 +41,35 @@ public class Selecoes {
     }
 
     public boolean isEst() {
-        return est;
+        return estreante;
     }
 
-    public void setEst(boolean est) {
-        this.est = est;
+    public void setEst(boolean estreante) {
+        this.estreante = estreante;
     }
 
     public int getNpart() {
-        return npart;
+        return participacoes;
     }
 
-    public void setNpart(int npart) {
-        this.npart = npart;
+    public void setNpart(int participacoes) {
+        this.participacoes = participacoes;
     }
 
     public String getMposi() {
-        return mposi;
+        return MelhorColoc;
     }
 
-    public void setMposi(String mposi) {
-        this.mposi = mposi;
+    public void setMposi(String MelhorColoc) {
+        this.MelhorColoc = MelhorColoc;
     }
 
     public String getFatoin() {
-        return fatoin;
+        return curiosidade;
     }
 
-    public void setFatoin(String fatoin) {
-        this.fatoin = fatoin;
+    public void setFatoin(String curiosidade) {
+        this.curiosidade = curiosidade;
     }
 
     @Override
@@ -78,10 +78,10 @@ public class Selecoes {
         + " ID=" + id 
         + "\n Nome=" + nome 
         + "\n Titulos: " + titulos 
-        + "\n Estreante? " + est 
-        + "\n Numero de participacoes: " + npart 
-        + "\n Maior posicao obtida: " + mposi 
-        + "\n Fato interresante: " + fatoin + '}';
+        + "\n Estreante? " + estreante 
+        + "\n Numero de participacoes: " + participacoes 
+        + "\n Maior posicao obtida: " + MelhorColoc 
+        + "\n Fato interresante: " + curiosidade + '}';
     }
     
 }
