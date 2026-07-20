@@ -318,7 +318,17 @@ public class INSelecoes extends javax.swing.JFrame {
             boolean estreante = JcheckEstreante.isSelected();
 
             // 1. Cria a seleção (Ajuste os parâmetros se o construtor da sua classe Selecoes for diferente)
-            Selecoes novaSelecao = new Selecoes(WIDTH, nome, titulos, estreante, participacoes, melhorColocacao, curiosidade, jogadoresTemporarios, participacoes, titulos, titulos, ERROR, SOMEBITS, SOMEBITS, ALLBITS, titulos);
+            Selecoes novaSelecao = new Selecoes(
+                    1, // Substitui WIDTH por um ID padrão (ex: 1)
+                    nome,
+                    titulos,
+                    estreante,
+                    participacoes,
+                    melhorColocacao,
+                    curiosidade,
+                    jogadoresTemporarios,
+                    0, 0, 0, 0, 0, 0, 0, 0 // 🌟 Todos os 8 dados do campeonato começam estritamente em 0!
+            );
 
             // 2. SALVA DE VERDADE NO SEU SISTEMA GLOBAL
             GerenciadorDados.todasSelecoes.add(novaSelecao);
@@ -335,14 +345,14 @@ public class INSelecoes extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnSalvarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                                           
-    // Abre a tela de Grupos que configuramos antes
-    INGrupo telaGrupo = new INGrupo();
-    telaGrupo.setVisible(true);
-    telaGrupo.setLocationRelativeTo(null);
-    
-    // Fecha a tela de seleções atual para avançar no fluxo
-    this.dispose();
+
+        // Abre a tela de Grupos que configuramos antes
+        INGrupo telaGrupo = new INGrupo();
+        telaGrupo.setVisible(true);
+        telaGrupo.setLocationRelativeTo(null);
+
+        // Fecha a tela de seleções atual para avançar no fluxo
+        this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
     private void limparCampos() {
@@ -363,12 +373,12 @@ public class INSelecoes extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       GerenciadorDados.carregarDadosPredefinidos();
+        GerenciadorDados.carregarDadosPredefinidos();
 
-    /* Código padrão do NetBeans que abre a tela... */
-    java.awt.EventQueue.invokeLater(() -> {
-        new INSelecoes().setVisible(true); // Ou o nome da sua tela inicial
-    });
+        /* Código padrão do NetBeans que abre a tela... */
+        java.awt.EventQueue.invokeLater(() -> {
+            new INSelecoes().setVisible(true); // Ou o nome da sua tela inicial
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
