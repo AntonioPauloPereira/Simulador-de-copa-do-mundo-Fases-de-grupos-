@@ -58,6 +58,7 @@ public class INSelecoes extends javax.swing.JFrame {
         jBtnRmv = new javax.swing.JButton();
         jBtnSalvar = new javax.swing.JButton();
         JcheckEstreante = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 800));
@@ -147,14 +148,17 @@ public class INSelecoes extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Próximo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(553, 553, 553)
-                .addComponent(jBtnSalvar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +202,13 @@ public class INSelecoes extends javax.swing.JFrame {
                                 .addGap(329, 329, 329)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13))))
+                                    .addComponent(jLabel13)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBtnSalvar)
+                                .addGap(56, 56, 56)
+                                .addComponent(jButton1)
+                                .addGap(368, 368, 368)))
                         .addGap(141, 141, 141))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -229,9 +239,7 @@ public class INSelecoes extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(jBtnSalvar)
-                        .addGap(130, 130, 130))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
@@ -244,7 +252,11 @@ public class INSelecoes extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBtnRmv)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBtnSalvar)
+                            .addComponent(jButton1))
+                        .addGap(137, 137, 137))))
         );
 
         pack();
@@ -267,14 +279,7 @@ public class INSelecoes extends javax.swing.JFrame {
     }//GEN-LAST:event_JcheckEstreanteActionPerformed
 
     private void jBtnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarMouseClicked
-        // TODO add your handling code here:
 
-        String nome = jtfNomeDaSelecao.getText();
-        String MelhorCOlocacao = jtfMelhorColocacao.getText();
-        String curiosidade = jtfCuriosidade.getText();
-        int titulos = Integer.parseInt(jtfTitulo.getText());
-        int participacoes = Integer.parseInt(jtfParticipacoes.getText());
-        boolean estreante = JcheckEstreante.isSelected();
     }//GEN-LAST:event_jBtnSalvarMouseClicked
 
     private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
@@ -304,7 +309,6 @@ public class INSelecoes extends javax.swing.JFrame {
 
     private void jBtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarActionPerformed
         // TODO add your handling code here:
-
         try {
             String nome = jtfNomeDaSelecao.getText();
             String melhorColocacao = jtfMelhorColocacao.getText();
@@ -312,23 +316,48 @@ public class INSelecoes extends javax.swing.JFrame {
             int titulos = Integer.parseInt(jtfTitulo.getText());
             int participacoes = Integer.parseInt(jtfParticipacoes.getText());
             boolean estreante = JcheckEstreante.isSelected();
-            // Se sua classe Selecao tiver um campo "numero", capture aqui também:
-            // int numero = Integer.parseInt(jtfNumero.getText());
 
-            // Cria o objeto Selecao passando os dados e a lista de jogadores temporários
-            Selecoes novaSelecoes = new Selecoes(WIDTH, nome, titulos, estreante, participacoes, melhorColocacao, curiosidade, jogadoresTemporarios, participacoes, titulos, titulos, ERROR, SOMEBITS, SOMEBITS, ALLBITS, titulos);
+            // 1. Cria a seleção (Ajuste os parâmetros se o construtor da sua classe Selecoes for diferente)
+            Selecoes novaSelecao = new Selecoes(WIDTH, nome, titulos, estreante, participacoes, melhorColocacao, curiosidade, jogadoresTemporarios, participacoes, titulos, titulos, ERROR, SOMEBITS, SOMEBITS, ALLBITS, titulos);
 
-            // Salva na sua lista global de persistência da Fase 3 
-            GerenciadorDados.todasSelecoes.add(novaSelecoes);
+            // 2. SALVA DE VERDADE NO SEU SISTEMA GLOBAL
+            GerenciadorDados.todasSelecoes.add(novaSelecao);
 
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleção " + nome + " salva com sucesso!");
-            dispose(); // Fecha a tela de seleções e volta para o menu principal
+            // 3. Avisa o usuário que deu certo
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleção '" + nome + "' salva com sucesso!");
+
+            // 4. Limpa a tela para cadastrar a próxima!
+            limparCampos();
 
         } catch (NumberFormatException e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Preencha os campos de títulos e participações com números válidos.");
         }
-
     }//GEN-LAST:event_jBtnSalvarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                                           
+    // Abre a tela de Grupos que configuramos antes
+    INGrupo telaGrupo = new INGrupo();
+    telaGrupo.setVisible(true);
+    telaGrupo.setLocationRelativeTo(null);
+    
+    // Fecha a tela de seleções atual para avançar no fluxo
+    this.dispose();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void limparCampos() {
+        jtfNomeDaSelecao.setText("");
+        jtfMelhorColocacao.setText("");
+        jtfCuriosidade.setText("");
+        jtfTitulo.setText("");
+        jtfParticipacoes.setText("");
+        jtfNumero.setText("");
+        JcheckEstreante.setSelected(false);
+
+        // Limpa os jogadores salvos na memória e limpa o JList da tela
+        jogadoresTemporarios.clear();
+        modeloLista.clear();
+    }
 
     /**
      * @param args the command line arguments
@@ -375,6 +404,7 @@ public class INSelecoes extends javax.swing.JFrame {
     private javax.swing.JButton jBtnAdd;
     private javax.swing.JButton jBtnRmv;
     private javax.swing.JButton jBtnSalvar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

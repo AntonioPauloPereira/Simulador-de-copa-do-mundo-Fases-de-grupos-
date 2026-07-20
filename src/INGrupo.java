@@ -1,21 +1,40 @@
+
+import javax.swing.DefaultListModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author antonio
  */
 public class INGrupo extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(INGrupo.class.getName());
+    private javax.swing.DefaultListModel<String> modeloLista = new javax.swing.DefaultListModel<>();
+    private java.util.List<String> selecoesDoGrupo = new java.util.ArrayList<>();
 
     /**
-     * Creates new form INGrupo
+     * Creates new forzm INGrupo
      */
     public INGrupo() {
         initComponents();
+
+        // 1. Vincula o "motor" (modeloLista) ao componente visual (listSelecoesDoGrupo)
+        listSelecoesDoGrupo.setModel(modeloLista);
+
+        // 2. Preenche o ComboBox com as seleções reais que você cadastrou antes
+        carregarComboSelecoes();
+    }
+
+    private void carregarComboSelecoes() {
+        jcboxSelecoesDisponiveis.removeAllItems(); // Limpa os nomes genéricos do NetBeans
+
+        // Puxa as seleções da sua lista global do sistema
+        for (Selecoes s : GerenciadorDados.todasSelecoes) {
+            jcboxSelecoesDisponiveis.addItem(s.getNome());
+        }
     }
 
     /**
@@ -28,31 +47,151 @@ public class INGrupo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btnSalvar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listSelecoesDoGrupo = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
+        jtfNomeGrupo = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jcboxSelecoesDisponiveis = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         jLabel1.setText("Grupo");
 
+        btnSalvar.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(this::btnSalvarActionPerformed);
+
+        listSelecoesDoGrupo.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listSelecoesDoGrupo);
+
+        jLabel2.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel2.setText("Seleções disponíveis: ");
+
+        jButton1.setText("+");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+
+        jLabel3.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel3.setText("Nome do grupo:");
+
+        jLabel4.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel4.setText("Seleções do grupo: ");
+
+        jcboxSelecoesDisponiveis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(jLabel1)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 105, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(310, 310, 310))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jcboxSelecoesDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtfNomeGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addContainerGap(485, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfNomeGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcboxSelecoesDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSalvar)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+        String nomeGrupo = jtfNomeGrupo.getText();
+
+        // Validação simples: não deixa salvar sem nome
+        if (nomeGrupo.trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite o nome do grupo!");
+            return;
+        }
+
+        // Cria o objeto Grupo usando o construtor da sua classe!
+        Grupo novoGrupo = new Grupo(nomeGrupo, selecoesDoGrupo);
+
+        // Salva na lista global de grupos (supondo que você criou essa lista no GerenciadorDados)
+        GerenciadorDados.todosGrupos.add(novoGrupo);
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Grupo '" + nomeGrupo + "' cadastrado com sucesso!");
+
+        // Fecha a janela de grupo e volta para o menu principal
+        dispose();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        // Pega o nome da seleção que está marcado no ComboBox
+        String selecaoSelecionada = (String) jcboxSelecoesDisponiveis.getSelectedItem();
+
+        if (selecaoSelecionada != null) {
+            // Evita que o usuário adicione a mesma seleção duas vezes no mesmo grupo
+            if (!selecoesDoGrupo.contains(selecaoSelecionada)) {
+                selecoesDoGrupo.add(selecaoSelecionada);        // Salva na nossa lista lógica
+                modeloLista.addElement(selecaoSelecionada);    // Mostra visualmente no JList
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Esta seleção já foi adicionada ao grupo!");
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nenhuma seleção disponível.");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,6 +219,15 @@ public class INGrupo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jcboxSelecoesDisponiveis;
+    private javax.swing.JTextField jtfNomeGrupo;
+    private javax.swing.JList<String> listSelecoesDoGrupo;
     // End of variables declaration//GEN-END:variables
 }
