@@ -78,6 +78,7 @@ public class INConfronto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabelaClassificacao = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -186,6 +187,13 @@ public class INConfronto extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel3.setText("Selecione grupo:");
 
+        jButton1.setText("Calcular resultados");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,7 +201,10 @@ public class INConfronto extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(465, 465, 465)
-                    .addComponent(jbSalvar))
+                    .addComponent(jbSalvar)
+                    .addGap(28, 28, 28)
+                    .addComponent(jButton1)
+                    .addContainerGap())
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(481, 481, 481)
                     .addComponent(jLabel1)
@@ -223,7 +234,9 @@ public class INConfronto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jbSalvar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSalvar)
+                    .addComponent(jButton1))
                 .addGap(10, 10, 10))
         );
 
@@ -257,9 +270,25 @@ public class INConfronto extends javax.swing.JFrame {
     private void jTextField32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField32ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField32ActionPerformed
-
+    
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
+            int indexSelecionado = jcboxGrupos.getSelectedIndex();
+    
+    if (indexSelecionado == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Selecione um grupo primeiro.");
+        return;
+    }
+    
+    Grupo grupoAtual = GerenciadorDados.todosGrupos.get(indexSelecionado);
+    
+    // Converte a coleção de seleções do grupo para uma lista indexada (0 a 3)
+    java.util.List<String> times = new java.util.ArrayList<>(grupoAtual.getSelecoes());
+    
+    if (times.size() < 4) {
+        javax.swing.JOptionPane.showMessageDialog(this, "O grupo precisa ter 4 times para rodar os confrontos.");
+        return;
+    }
+
         try {
         // Varre todas as linhas da tabela que estão aparecendo na tela
         for (int i = 0; i < modeloTabela.getRowCount(); i++) {
@@ -330,6 +359,152 @@ public class INConfronto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jcboxGruposActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    int indexSelecionado = jcboxGrupos.getSelectedIndex();
+    
+    if (indexSelecionado == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Por favor, selecione um grupo primeiro!");
+        return;
+    }
+    
+    Grupo grupoAtual = GerenciadorDados.todosGrupos.get(indexSelecionado);
+    Selecoes campeao = null;
+    
+    // Varre todas as seleções do grupo para encontrar a melhor
+    for (String nomeSelecao : grupoAtual.getSelecoes()) {
+        Selecoes atual = buscarSelecaoPorNome(nomeSelecao);
+        if (atual == null) continue;
+        
+        if (campeao == null) {
+            campeao = atual; // Primeiro time analisado vira o campeão provisório
+        } else {
+            // --- CRITÉRIOS DE DESEMPATE ---
+            
+            // 1. Maior número de pontos
+            if (atual.getPontos() > campeao.getPontos()) {
+                campeao = atual;
+            } 
+            // 2. Se empatar em pontos, ganha quem tiver mais Vitórias
+            else if (atual.getPontos() == campeao.getPontos()) {
+                if (atual.getVitorias() > campeao.getVitorias()) {
+                    campeao = atual;
+                } 
+                // 3. Se empatar em vitórias, ganha quem tiver melhor Saldo de Gols (SG)
+                else if (atual.getVitorias() == campeao.getVitorias()) {
+                    if (atual.getSaldoGols() > campeao.getSaldoGols()) {
+                        campeao = atual;
+                    }
+                    // 4. Se ainda assim empatar, ganha quem fez mais Gols Marcados (GM)
+                    else if (atual.getSaldoGols() == campeao.getSaldoGols()) {
+                        if (atual.getGolsMarcados() > campeao.getGolsMarcados()) {
+                            campeao = atual;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // Se encontrou um campeão, exibe o popup na tela
+    if (campeao != null) {
+        String mensagem = String.format(
+            "🏆 CAMPEÃO DO GRUPO: %s 🏆\n\n" +
+            "Campanha:\n" +
+            "• Pontos: %d\n" +
+            "• Vitórias: %d\n" +
+            "• Saldo de Gols: %d\n" +
+            "• Gols Pró: %d", 
+            campeao.getNome().toUpperCase(),
+            campeao.getPontos(),
+            campeao.getVitorias(),
+            campeao.getSaldoGols(),
+            campeao.getGolsMarcados()
+        );
+        
+        javax.swing.JOptionPane.showMessageDialog(this, mensagem, "Resultado do Grupo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Não foi possível determinar o campeão deste grupo.");
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void zerarEstatisticasDoGrupo(Grupo grupo) {
+    for (String nomeSelecao : grupo.getSelecoes()) {
+        Selecoes sel = buscarSelecaoPorNome(nomeSelecao);
+        if (sel != null) {
+            sel.setPontos(0);      int indexSelecionado = jcboxGrupos.getSelectedIndex();
+    
+    if (indexSelecionado == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Por favor, selecione um grupo primeiro!");
+        return;
+    }
+    
+    Grupo grupoAtual = GerenciadorDados.todosGrupos.get(indexSelecionado);
+    Selecoes campeao = null;
+    
+    // Varre todas as seleções do grupo para encontrar a melhor
+    for (String nomeSelecao1 : grupoAtual.getSelecoes()) {
+        Selecoes atual = buscarSelecaoPorNome(nomeSelecao);
+        if (atual == null) continue;
+        
+        if (campeao == null) {
+            campeao = atual; // Primeiro time analisado vira o campeão provisório
+        } else {
+            // --- CRITÉRIOS DE DESEMPATE ---
+            
+            // 1. Maior número de pontos
+            if (atual.getPontos() > campeao.getPontos()) {
+                campeao = atual;
+            } 
+            // 2. Se empatar em pontos, ganha quem tiver mais Vitórias
+            else if (atual.getPontos() == campeao.getPontos()) {
+                if (atual.getVitorias() > campeao.getVitorias()) {
+                    campeao = atual;
+                } 
+                // 3. Se empatar em vitórias, ganha quem tiver melhor Saldo de Gols (SG)
+                else if (atual.getVitorias() == campeao.getVitorias()) {
+                    if (atual.getSaldoGols() > campeao.getSaldoGols()) {
+                        campeao = atual;
+                    }
+                    // 4. Se ainda assim empatar, ganha quem fez mais Gols Marcados (GM)
+                    else if (atual.getSaldoGols() == campeao.getSaldoGols()) {
+                        if (atual.getGolsMarcados() > campeao.getGolsMarcados()) {
+                            campeao = atual;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // Se encontrou um campeão, exibe o popup na tela
+    if (campeao != null) {
+        String mensagem = String.format(
+            "🏆 CAMPEÃO DO GRUPO: %s 🏆\n\n" +
+            "Campanha:\n" +
+            "• Pontos: %d\n" +
+            "• Vitórias: %d\n" +
+            "• Saldo de Gols: %d\n" +
+            "• Gols Pró: %d", 
+            campeao.getNome().toUpperCase(),
+            campeao.getPontos(),
+            campeao.getVitorias(),
+            campeao.getSaldoGols(),
+            campeao.getGolsMarcados()
+        );
+        
+        javax.swing.JOptionPane.showMessageDialog(this, mensagem, "Resultado do Grupo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Não foi possível determinar o campeão deste grupo.");
+    } 
+            sel.setPartidasJogadas(0);
+            sel.setVitorias(0);
+            sel.setEmpates(0);
+            sel.setDerrotas(0);
+            sel.setGolsMarcados(0);
+            sel.setGolContra(0);
+            sel.setSaldoGols(0);
+        }
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -355,7 +530,59 @@ public class INConfronto extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new INConfronto().setVisible(true));
     }
 
+    private void computarConfronto(String nomeTimeA, String nomeTimeB, String txtGolsA, String txtGolsB) {
+    // Se algum campo estiver vazio, ignora o confronto (ainda não jogado)
+    if (txtGolsA.trim().isEmpty() || txtGolsB.trim().isEmpty()) {
+        return;
+    }
+
+    try {
+        int golsA = Integer.parseInt(txtGolsA);
+        int golsB = Integer.parseInt(txtGolsB);
+
+        Selecoes timeA = buscarSelecaoPorNome(nomeTimeA);
+        Selecoes timeB = buscarSelecaoPorNome(nomeTimeB);
+
+        if (timeA == null || timeB == null) return;
+
+        // 1. Atualiza partidas jogadas
+        timeA.setPartidasJogadas(timeA.getPartidasJogadas() + 1);
+        timeB.setPartidasJogadas(timeB.getPartidasJogadas() + 1);
+
+        // 2. Atualiza Gols Marcados e Sofridos
+        timeA.setGolsMarcados(timeA.getGolsMarcados() + golsA);
+        timeA.setGolContra(timeA.getGolContra() + golsB);
+        
+        timeB.setGolsMarcados(timeB.getGolsMarcados() + golsB);
+        timeB.setGolContra(timeB.getGolContra() + golsA);
+
+        // 3. Lógica para definir o Ganhador / Empate
+        if (golsA > golsB) { // Vitória do Time A
+            timeA.setPontos(timeA.getPontos() + 3);
+            timeA.setVitorias(timeA.getVitorias() + 1);
+            timeB.setDerrotas(timeB.getDerrotas() + 1);
+        } else if (golsB > golsA) { // Vitória do Time B
+            timeB.setPontos(timeB.getPontos() + 3);
+            timeB.setVitorias(timeB.getVitorias() + 1);
+            timeA.setDerrotas(timeA.getDerrotas() + 1);
+        } else { // Empate
+            timeA.setPontos(timeA.getPontos() + 1);
+            timeA.setEmpates(timeA.getEmpates() + 1);
+            timeB.setPontos(timeB.getPontos() + 1);
+            timeB.setEmpates(timeB.getEmpates() + 1);
+        }
+
+        // 4. Atualiza o Saldo de Gols (SG)
+        timeA.setSaldoGols(timeA.getGolsMarcados() - timeA.getGolContra());
+        timeB.setSaldoGols(timeB.getGolsMarcados() - timeB.getGolContra());
+
+    } catch (NumberFormatException e) {
+        // Ignora caso o usuário digite letras onde deveriam ser números
+    }
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
