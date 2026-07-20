@@ -13,14 +13,14 @@ public class Selecoes {
     private List<Jogador> jogadores; //Lista de objetos
     
     //Atributos para não serem preenchidos durante o cadastro
-    private int partidasJogadas;
-    private int vitorias;
-    private int empates;
-    private int derrotas;
-    private int golsMarcados;
-    private int golContra;
-    private int saldoGols;
-    private int pontos;
+    private int partidasJogadas = 0;
+    private int vitorias = 0;
+    private int empates = 0;
+    private int derrotas = 0;
+    private int golsMarcados = 0;
+    private int golContra = 0;
+    private int saldoGols = 0;
+    private int pontos = 0;
     //Construtores
     
     public Selecoes(){};
