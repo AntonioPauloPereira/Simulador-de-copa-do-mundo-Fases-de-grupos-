@@ -54,4 +54,17 @@ public class ManipuladorJSON {
         ArrayList<Grupo> lista = conversor.fromJson(arquivoJSON, tipoLista);
         return lista;
     }
+    // Transforma a lista de Seleções em texto JSON
+public static String converterListaSelecoesParaJSON(ArrayList<Selecoes> lista) {
+    Gson conversor = new Gson();
+    return conversor.toJson(lista);
+}
+
+// Transforma o texto JSON de volta em uma lista de Seleções
+public static ArrayList<Selecoes> converterJsonParaListaSelecoes(String arquivoJSON) {
+    Gson conversor = new Gson();
+    Type tipoLista = new TypeToken<ArrayList<Selecoes>>() {}.getType();
+    ArrayList<Selecoes> lista = conversor.fromJson(arquivoJSON, tipoLista);
+    return lista;
+}
 }

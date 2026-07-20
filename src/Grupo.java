@@ -38,7 +38,7 @@ public class Grupo {
 
     @Override
     public String toString() {
-        return  "Nome: " + nome + "\nSelecoes: " + selecoes;
+        return  "\nNome: " + nome + "\nSelecoes: " + selecoes;
     }
     
     

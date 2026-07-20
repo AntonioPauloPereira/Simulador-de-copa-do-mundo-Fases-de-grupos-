@@ -162,7 +162,7 @@ public class INGrupo extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         String nomeGrupo = jtfNomeGrupo.getText().trim();
-
+        
     // 1. Validações básicas de segurança
     if (nomeGrupo.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite o nome do grupo (ex: Grupo A).");
@@ -179,7 +179,7 @@ public class INGrupo extends javax.swing.JFrame {
     // 3. Cria o objeto do Grupo e salva na memória global
     Grupo novoGrupo = new Grupo(nomeGrupo, listaSalvar);
     GerenciadorDados.todosGrupos.add(novoGrupo);
-
+    GerenciadorDados.salvarDadosEmArquivo();
     // 4. Mostra o aviso de sucesso
     javax.swing.JOptionPane.showMessageDialog(this, "O '" + nomeGrupo + "' foi salvo com sucesso!");
 

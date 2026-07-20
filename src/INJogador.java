@@ -225,7 +225,7 @@ public class INJogador extends javax.swing.JFrame {
 
             // 3. Envia o jogador de volta para a INSelecoes (telaPai)
             telaPai.adicionarJogadorNaLista(j1);
-
+            GerenciadorDados.salvarDadosEmArquivo();
             // 4. Fecha apenas a janela do Jogador
             
             dispose();

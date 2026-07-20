@@ -317,7 +317,7 @@ public class INSelecoes extends javax.swing.JFrame {
             int participacoes = Integer.parseInt(jtfParticipacoes.getText());
             boolean estreante = JcheckEstreante.isSelected();
 
-            // 1. Cria a seleção (Ajuste os parâmetros se o construtor da sua classe Selecoes for diferente)
+            // 1. Cria a seleção  
             Selecoes novaSelecao = new Selecoes(
                     1, // Substitui WIDTH por um ID padrão (ex: 1)
                     nome,
@@ -332,7 +332,7 @@ public class INSelecoes extends javax.swing.JFrame {
 
             // 2. SALVA DE VERDADE NO SEU SISTEMA GLOBAL
             GerenciadorDados.todasSelecoes.add(novaSelecao);
-
+            GerenciadorDados.salvarDadosEmArquivo();
             // 3. Avisa o usuário que deu certo
             javax.swing.JOptionPane.showMessageDialog(this, "Seleção '" + nome + "' salva com sucesso!");
 
@@ -374,7 +374,7 @@ public class INSelecoes extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         GerenciadorDados.carregarDadosPredefinidos();
-
+        GerenciadorDados.carregarDadosDoArquivo();
         /* Código padrão do NetBeans que abre a tela... */
         java.awt.EventQueue.invokeLater(() -> {
             new INSelecoes().setVisible(true); // Ou o nome da sua tela inicial

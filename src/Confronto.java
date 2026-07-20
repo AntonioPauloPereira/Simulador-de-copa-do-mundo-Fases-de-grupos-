@@ -78,7 +78,7 @@ public class Confronto {
 
     @Override
     public String toString() {
-        return "Selecao A: " + selecaoA + "\nSelecao B: " + selecaoB + "\nGoals A: " + goalsA + "\nGoals B: " + goalsB + "\nLocal: " + local + "\nData e hora do confronto: " + dataHoraConfronto;
+        return "\nSelecao A: " + selecaoA + "\nSelecao B: " + selecaoB + "\nGoals A: " + goalsA + "\nGoals B: " + goalsB + "\nLocal: " + local + "\nData e hora do confronto: " + dataHoraConfronto;
     }
     
     

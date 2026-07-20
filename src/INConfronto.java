@@ -315,6 +315,7 @@ public class INConfronto extends javax.swing.JFrame {
                 sel.setGolsMarcados(gm);
                 sel.setGolContra(gc);
                 sel.setSaldoGols(sg);
+                GerenciadorDados.salvarDadosEmArquivo();
             }
         }
         
@@ -398,6 +399,7 @@ public class INConfronto extends javax.swing.JFrame {
                     else if (atual.getSaldoGols() == campeao.getSaldoGols()) {
                         if (atual.getGolsMarcados() > campeao.getGolsMarcados()) {
                             campeao = atual;
+                            GerenciadorDados.salvarDadosEmArquivo();
                         }
                     }
                 }

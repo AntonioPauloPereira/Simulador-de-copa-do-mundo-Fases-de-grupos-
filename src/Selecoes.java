@@ -180,7 +180,7 @@ public class Selecoes {
 
     @Override
     public String toString() {
-        return "Selecoes{" + "id=" + id + ", nome=" + nome + ", titulos=" + titulos + ", estreante=" + estreante + ", participacoes=" + participacoes + ", MelhorColoc=" + MelhorColoc + ", curiosidade=" + curiosidade + ", jogadores=" + jogadores + ", partidasJogadas=" + partidasJogadas + ", vitorias=" + vitorias + ", empates=" + empates + ", derrotas=" + derrotas + ", golsMarcados=" + golsMarcados + ", golContra=" + golContra + ", saldoGols=" + saldoGols + ", pontos=" + pontos + '}';
+        return "Selecoes{" + "\nid" + id + "\nnome=" + nome + "\ntitulos=" + titulos + "\nestreante=" + estreante + "\nparticipacoes=" + participacoes + "\nMelhorColoc=" + MelhorColoc + "\ncuriosidade=" + curiosidade + "\njogadores=" + jogadores + "\npartidasJogadas=" + partidasJogadas + "\nvitorias=" + vitorias + "\nempates=" + empates + "\nderrotas=" + derrotas + "\ngolsMarcados=" + golsMarcados + "\ngolContra=" + golContra + "\nsaldoGols=" + saldoGols + "\npontos=" + pontos + '}';
     }
 
     
