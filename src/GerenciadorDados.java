@@ -14,4 +14,5 @@ import java.util.List;
  public class GerenciadorDados {
     public static List<Grupo> todosGrupos = new ArrayList<>();
     public static List<Confronto> todosConfrontos = new ArrayList<>();
+    public static List<Selecoes> todasSelecoes = new ArrayList<>();
 }

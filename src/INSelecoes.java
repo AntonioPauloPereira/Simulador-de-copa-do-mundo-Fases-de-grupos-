@@ -1,23 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author 20251114010078
- */
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 public class INSelecoes extends javax.swing.JFrame {
+
+    // Lista na memória para guardar os jogadores desta seleção antes de salvar tudo
+    private ArrayList<Jogador> jogadoresTemporarios = new ArrayList<>();
+
+    // O "motor" que gerencia os itens visíveis dentro do seu JList
+    private DefaultListModel<String> modeloLista = new DefaultListModel<>();
 
     /**
      * Creates new form Selecao
      */
     public INSelecoes() {
         initComponents();
-        
-         setSize(400, 300);
+
+        setSize(400, 300);
         setLocationRelativeTo(null);
         setVisible(true);
+        jListJogadores.setModel(modeloLista);  //Vincula o motor de renderização ao componente da tela
+
     }
 
     /**
@@ -119,11 +122,21 @@ public class INSelecoes extends javax.swing.JFrame {
         });
 
         jBtnRmv.setText("-");
+        jBtnRmv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRmvActionPerformed(evt);
+            }
+        });
 
         jBtnSalvar.setText("Salvar");
         jBtnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnSalvarMouseClicked(evt);
+            }
+        });
+        jBtnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSalvarActionPerformed(evt);
             }
         });
 
@@ -138,10 +151,14 @@ public class INSelecoes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(553, 553, 553)
+                .addComponent(jBtnSalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(63, 63, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNomeDaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
@@ -162,7 +179,7 @@ public class INSelecoes extends javax.swing.JFrame {
                             .addComponent(jtfParticipacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addGap(125, 125, 125))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addGroup(layout.createSequentialGroup()
@@ -182,16 +199,10 @@ public class INSelecoes extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13))))
-                        .addGap(141, 141, 141))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(463, 463, 463)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(553, 553, 553)
-                        .addComponent(jBtnSalvar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(141, 141, 141))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(513, 513, 513))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,22 +268,67 @@ public class INSelecoes extends javax.swing.JFrame {
 
     private void jBtnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarMouseClicked
         // TODO add your handling code here:
-        
+
         String nome = jtfNomeDaSelecao.getText();
         String MelhorCOlocacao = jtfMelhorColocacao.getText();
         String curiosidade = jtfCuriosidade.getText();
         int titulos = Integer.parseInt(jtfTitulo.getText());
         int participacoes = Integer.parseInt(jtfParticipacoes.getText());
-        boolean estreante = JcheckEstreante.isSelected(); 
+        boolean estreante = JcheckEstreante.isSelected();
     }//GEN-LAST:event_jBtnSalvarMouseClicked
 
     private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
         // TODO add your handling code here:
-        
+
         INJogador iNJogador = new INJogador(this);
         iNJogador.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jBtnAddActionPerformed
+
+    private void jBtnRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRmvActionPerformed
+        // TODO add your handling code here:
+
+        // Pega a linha que o usuário clicou no JList (-1 significa que ele não clicou em nada)
+        int indiceSelecionado = jListJogadores.getSelectedIndex();
+
+        if (indiceSelecionado != -1) {
+            // Remove da lista de memória usando o índice
+            jogadoresTemporarios.remove(indiceSelecionado);
+
+            // Atualiza a tela para sumir com o jogador deletado
+            atualizarListaVisual();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecione um jogador na lista para poder remover!");
+        }
+    }//GEN-LAST:event_jBtnRmvActionPerformed
+
+    private void jBtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            String nome = jtfNomeDaSelecao.getText();
+            String melhorColocacao = jtfMelhorColocacao.getText();
+            String curiosidade = jtfCuriosidade.getText();
+            int titulos = Integer.parseInt(jtfTitulo.getText());
+            int participacoes = Integer.parseInt(jtfParticipacoes.getText());
+            boolean estreante = JcheckEstreante.isSelected();
+            // Se sua classe Selecao tiver um campo "numero", capture aqui também:
+            // int numero = Integer.parseInt(jtfNumero.getText());
+
+            // Cria o objeto Selecao passando os dados e a lista de jogadores temporários
+            Selecoes novaSelecoes = new Selecoes(WIDTH, nome, titulos, estreante, participacoes, melhorColocacao, curiosidade, jogadoresTemporarios, participacoes, titulos, titulos, ERROR, SOMEBITS, SOMEBITS, ALLBITS, titulos);
+
+            // Salva na sua lista global de persistência da Fase 3 
+            GerenciadorDados.todasSelecoes.add(novaSelecoes);
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleção " + nome + " salva com sucesso!");
+            dispose(); // Fecha a tela de seleções e volta para o menu principal
+
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Preencha os campos de títulos e participações com números válidos.");
+        }
+
+    }//GEN-LAST:event_jBtnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,4 +394,23 @@ public class INSelecoes extends javax.swing.JFrame {
     private javax.swing.JTextField jtfParticipacoes;
     private javax.swing.JTextField jtfTitulo;
     // End of variables declaration//GEN-END:variables
+
+    // Método público para que a INJogador possa chamar
+    public void adicionarJogadorNaLista(Jogador novo) {
+        // 1. Adiciona na nossa lista real (memória)
+        jogadoresTemporarios.add(novo);
+
+        // 2. Atualiza a lista visual (tela)
+        atualizarListaVisual();
+    }
+
+    // Método auxiliar para redesenhar o JList sempre que houver mudanças
+    private void atualizarListaVisual() {
+        modeloLista.clear(); // Limpa o que estava na tela
+
+        // Percorre a lista de memória e joga os nomes no modelo visual
+        for (Jogador j : jogadoresTemporarios) {
+            modeloLista.addElement(j.getNome() + " (" + j.getPosicao() + ")");
+        }
+    }
 }

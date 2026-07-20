@@ -7,16 +7,19 @@
  *
  * @author 20251114010078
  */
-
 import javax.swing.JFrame;
+
 public class INJogador extends javax.swing.JFrame {
+
+    private final INSelecoes telaPai; // Guarda a referência da tela que a chamou
 
     /**
      * Creates new form Jogador
      */
-    public INJogador(JFrame telaAnterior) {
+    public INJogador(INSelecoes telaPai) {
         initComponents();
         setLocationRelativeTo(null);
+        this.telaPai = telaPai;
     }
 
     /**
@@ -200,35 +203,45 @@ public class INJogador extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfClubeAtualActionPerformed
 
     private void jBtnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarMouseClicked
-        
-        int numero = Integer.parseInt(jtfNumeroJogador.getText());
-        String nome = jtfNomeJogador.getText();
-        String posicao = jtfPosicaoJogador.getText();
-        String dataNascimento = jtfDataNascimentoJogador.getText();
-        double altura = Double.parseDouble(jtfAlturaJogador.getText());
-        double peso = Double.parseDouble(jtfPesoJogador.getText());
-        String pais = jtfPaisJogador.getText();
-        String clubeAtual = jtfClubeAtual.getText();
-        
-        Jogador j1 = new Jogador(numero, nome, posicao, dataNascimento, altura, peso, pais, clubeAtual);
-         
-   
-        
+
+
     }//GEN-LAST:event_jBtnSalvarMouseClicked
 
     private void jBtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarActionPerformed
-        // TODO add your handling code here:
-               
-        INSelecoes iNSelecoes = new INSelecoes();
-        iNSelecoes.setVisible(true);
-        dispose();
+
+        try {
+            // 1. Captura todos os dados digitados na tela
+            int numero = Integer.parseInt(jtfNumeroJogador.getText());
+            String nome = jtfNomeJogador.getText();
+            String posicao = jtfPosicaoJogador.getText();
+            String dataNascimento = jtfDataNascimentoJogador.getText();
+            double altura = Double.parseDouble(jtfAlturaJogador.getText());
+            double peso = Double.parseDouble(jtfPesoJogador.getText());
+            String pais = jtfPaisJogador.getText();
+            String clubeAtual = jtfClubeAtual.getText();
+
+            // 2. Cria a instância do jogador
+            Jogador j1 = new Jogador(numero, nome, posicao, dataNascimento, altura, peso, pais, clubeAtual);
+
+            // 3. Envia o jogador de volta para a INSelecoes (telaPai)
+            telaPai.adicionarJogadorNaLista(j1);
+
+            // 4. Fecha apenas a janela do Jogador
+            
+            dispose();
+
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, preencha os campos numéricos (Número, Altura, Peso) corretamente.");
+        }
+
+
     }//GEN-LAST:event_jBtnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
