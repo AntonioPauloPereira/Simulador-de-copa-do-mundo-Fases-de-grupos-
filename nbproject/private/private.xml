@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/antonio/NetBeansProjects/JavaApplication1/src/INJogador.java</file>
-            <file>file:/home/antonio/NetBeansProjects/JavaApplication1/src/Confronto.java</file>
-            <file>file:/home/antonio/NetBeansProjects/JavaApplication1/src/Grupo.java</file>
-            <file>file:/home/antonio/NetBeansProjects/JavaApplication1/src/INSelecao.java</file>
-            <file>file:/home/antonio/NetBeansProjects/JavaApplication1/src/INConfronto.java</file>
-            <file>file:/home/antonio/NetBeansProjects/JavaApplication1/src/BancoDados.java</file>
+            <file>file:/home/antonio/Área%20de%20trabalho/Simulador-de-copa-do-mundo-Fases-de-grupos-/src/Selecao.java</file>
+            <file>file:/home/antonio/Área%20de%20trabalho/Simulador-de-copa-do-mundo-Fases-de-grupos-/src/ManipuladorJSON.java</file>
+            <file>file:/home/antonio/Área%20de%20trabalho/Simulador-de-copa-do-mundo-Fases-de-grupos-/src/ManipuladorArquivoTexto.java</file>
+            <file>file:/home/antonio/Área%20de%20trabalho/Simulador-de-copa-do-mundo-Fases-de-grupos-/src/INSelecoes.java</file>
+            <file>file:/home/antonio/Área%20de%20trabalho/Simulador-de-copa-do-mundo-Fases-de-grupos-/src/Jogador.java</file>
         </group>
     </open-files>
 </project-private>
