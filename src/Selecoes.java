@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-public class Selecao {
+public class Selecoes {
     
     //Atributos para serem preenchidos
     private int id;
@@ -23,9 +23,9 @@ public class Selecao {
     private int pontos;
     //Construtores
     
-    public Selecao(){};
+    public Selecoes(){};
 
-    public Selecao(int id, String nome, int titulos, boolean estreante, int participacoes, String MelhorColoc, String curiosidade, List<Jogador> jogadores, int partidasJogadas, int vitorias, int empates, int derrotas, int golsMarcados, int golContra, int saldoGols, int pontos) {
+    public Selecoes(int id, String nome, int titulos, boolean estreante, int participacoes, String MelhorColoc, String curiosidade, List<Jogador> jogadores, int partidasJogadas, int vitorias, int empates, int derrotas, int golsMarcados, int golContra, int saldoGols, int pontos) {
         this.id = id;
         this.nome = nome;
         this.titulos = titulos;
